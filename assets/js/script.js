@@ -5,8 +5,12 @@
 	// Theme color control js
 	$(document).ready(function () {
 		// Ambil preferensi mode gelap dari penyimpanan lokal
-		const isDarkMode = localStorage.getItem('darkMode') === 'true';
-		
+		const stored = localStorage.getItem('darkMode');
+		// Jika belum ada preferensi, default ke dark (true)
+		const isDarkMode = stored === null ? true : stored === 'true';
+		if (stored === null) {
+			localStorage.setItem('darkMode', 'true');
+		}
 		// Terapkan kelas mode gelap jika preferensi menyatakan mode gelap aktif
 		$('body').toggleClass('dark-theme', isDarkMode);
 		
