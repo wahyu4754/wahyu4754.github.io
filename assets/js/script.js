@@ -118,6 +118,7 @@
 		const isHomePage = /(^|\/)(index\.html)?$/.test(window.location.pathname);
 		if (!isHomePage) return;
 
+		const $fab = $('#productPromoFab');
 		const $langWrap = $popup.find('.product-promo-lang');
 		const storedLang = localStorage.getItem('promoLang');
 		const initialLang = storedLang === 'en' || storedLang === 'id'
@@ -130,7 +131,7 @@
 				const isActive = $(this).data('lang') === lang;
 				$(this).toggleClass('active', isActive).attr('aria-selected', isActive);
 			});
-			$popup.find('[data-i18n]').each(function () {
+			$('[data-i18n]').each(function () {
 				const key = $(this).attr('data-i18n');
 				$(this).prop('hidden', !key.endsWith('-' + lang));
 			});
@@ -146,14 +147,17 @@
 		function openPopup() {
 			$popup.addClass('is-open').attr('aria-hidden', 'false');
 			$('body').addClass('promo-open');
+			$fab.prop('hidden', true);
 		}
 
 		function closePopup() {
 			$popup.removeClass('is-open').attr('aria-hidden', 'true');
 			$('body').removeClass('promo-open');
+			$fab.prop('hidden', false);
 		}
 
 		$popup.on('click', '[data-popup-close]', closePopup);
+		$fab.on('click', openPopup);
 
 		$(document).on('keydown.promoPopup', function (e) {
 			if (e.key === 'Escape' && $popup.hasClass('is-open')) {
