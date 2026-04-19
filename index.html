@@ -667,6 +667,53 @@
     <!-- footer part end -->
   </div>
 
+  <!-- digital product promo popup start -->
+  <div class="product-promo-popup" id="productPromoPopup" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="productPromoTitle">
+    <div class="product-promo-overlay" data-popup-close></div>
+    <div class="product-promo-card" role="document">
+      <button type="button" class="product-promo-close" data-popup-close aria-label="Close popup">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="product-promo-lang" role="tablist" aria-label="Language switch">
+        <button type="button" class="lang-option active" data-lang="id" role="tab" aria-selected="true">ID</button>
+        <button type="button" class="lang-option" data-lang="en" role="tab" aria-selected="false">EN</button>
+        <span class="lang-indicator" aria-hidden="true"></span>
+      </div>
+      <div class="product-promo-body">
+        <div class="product-promo-badge">
+          <span class="emoji" aria-hidden="true">🛍️</span>
+          <span data-i18n="badge-id">Produk Digital</span>
+          <span data-i18n="badge-en" hidden>Digital Products</span>
+        </div>
+        <h3 class="product-promo-title" id="productPromoTitle">
+          <span data-i18n="title-id">Lagi cari produk digital buatan saya?</span>
+          <span data-i18n="title-en" hidden>Looking for my digital products?</span>
+        </h3>
+        <p class="product-promo-desc">
+          <span data-i18n="desc-id">Template, aset desain, dan resource kreatif siap pakai tersedia di lynk.id. Klik tombol di bawah untuk melihat katalog lengkapnya.</span>
+          <span data-i18n="desc-en" hidden>Ready-to-use templates, design assets, and creative resources are live on lynk.id. Tap the button below to explore the full catalog.</span>
+        </p>
+        <a class="product-promo-btn btn" href="https://lynk.id/wahyusatrio.o" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="cta-id">Lihat Produk Digital</span>
+          <span data-i18n="cta-en" hidden>Browse Digital Products</span>
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+        <button type="button" class="product-promo-dismiss" data-popup-close>
+          <span data-i18n="dismiss-id">Nanti saja</span>
+          <span data-i18n="dismiss-en" hidden>Maybe later</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- digital product promo popup end -->
+
   <!-- JS here -->
   <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
