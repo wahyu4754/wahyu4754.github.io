@@ -110,4 +110,61 @@
 		},]
 	});
 
+	// Digital product promo popup js
+	$(document).ready(function () {
+		const $popup = $('#productPromoPopup');
+		if (!$popup.length) return;
+
+		const isHomePage = /(^|\/)(index\.html)?$/.test(window.location.pathname);
+		if (!isHomePage) return;
+
+		const $langWrap = $popup.find('.product-promo-lang');
+		const storedLang = localStorage.getItem('promoLang');
+		const initialLang = storedLang === 'en' || storedLang === 'id'
+			? storedLang
+			: ((navigator.language || 'id').toLowerCase().startsWith('id') ? 'id' : 'en');
+
+		function applyLang(lang) {
+			$langWrap.attr('data-active', lang);
+			$langWrap.find('.lang-option').each(function () {
+				const isActive = $(this).data('lang') === lang;
+				$(this).toggleClass('active', isActive).attr('aria-selected', isActive);
+			});
+			$popup.find('[data-i18n]').each(function () {
+				const key = $(this).attr('data-i18n');
+				$(this).prop('hidden', !key.endsWith('-' + lang));
+			});
+			localStorage.setItem('promoLang', lang);
+		}
+
+		applyLang(initialLang);
+
+		$langWrap.on('click', '.lang-option', function () {
+			applyLang($(this).data('lang'));
+		});
+
+		function openPopup() {
+			$popup.addClass('is-open').attr('aria-hidden', 'false');
+			$('body').addClass('promo-open');
+		}
+
+		function closePopup() {
+			$popup.removeClass('is-open').attr('aria-hidden', 'true');
+			$('body').removeClass('promo-open');
+			sessionStorage.setItem('promoDismissed', '1');
+		}
+
+		$popup.on('click', '[data-popup-close]', closePopup);
+
+		$(document).on('keydown.promoPopup', function (e) {
+			if (e.key === 'Escape' && $popup.hasClass('is-open')) {
+				closePopup();
+			}
+		});
+
+		if (sessionStorage.getItem('promoDismissed') !== '1') {
+			setTimeout(openPopup, 900);
+		}
+	});
+
 })(jQuery);

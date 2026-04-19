@@ -2578,3 +2578,269 @@ p {
 	background-color: var(--primary);
 	color: var(--white);
 }
+
+/*=============================
+	12. Product Promo Popup CSS
+===============================*/
+
+.product-promo-popup {
+	position: fixed;
+	inset: 0;
+	z-index: 1080;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+}
+
+.product-promo-popup.is-open {
+	display: flex;
+	animation: promoFadeIn 0.25s ease-out both;
+}
+
+.product-promo-overlay {
+	position: absolute;
+	inset: 0;
+	background-color: rgba(26, 31, 44, 0.55);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+}
+
+.product-promo-card {
+	position: relative;
+	width: 100%;
+	max-width: 460px;
+	background-color: var(--white);
+	border-radius: 20px;
+	box-shadow: 0 24px 60px rgba(26, 31, 44, 0.25);
+	padding: 32px 28px 28px;
+	animation: promoScaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.product-promo-close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+	border: 1px solid var(--border);
+	background-color: transparent;
+	color: var(--black);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.product-promo-close:hover {
+	background-color: var(--background);
+}
+
+.product-promo-lang {
+	position: relative;
+	display: inline-flex;
+	padding: 4px;
+	background-color: var(--background);
+	border-radius: 999px;
+	margin-bottom: 20px;
+}
+
+.product-promo-lang .lang-option {
+	position: relative;
+	z-index: 2;
+	border: 0;
+	background: transparent;
+	font-family: var(--font-family);
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--light-black);
+	padding: 6px 16px;
+	border-radius: 999px;
+	cursor: pointer;
+	letter-spacing: 0.04em;
+}
+
+.product-promo-lang .lang-option.active {
+	color: var(--white);
+}
+
+.product-promo-lang .lang-indicator {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: calc(50% - 4px);
+	height: calc(100% - 8px);
+	background-color: var(--primary);
+	border-radius: 999px;
+	box-shadow: 0 2px 6px rgba(71, 112, 255, 0.35);
+	transition: transform 0.25s ease-out;
+	z-index: 1;
+}
+
+.product-promo-lang[data-active="en"] .lang-indicator {
+	transform: translateX(100%);
+}
+
+.product-promo-body {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.product-promo-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background-color: rgba(71, 112, 255, 0.1);
+	color: var(--primary);
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 14px;
+}
+
+.product-promo-badge .emoji {
+	font-size: 15px;
+}
+
+.product-promo-title {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.25em;
+	color: var(--black);
+	margin-bottom: 10px;
+}
+
+.product-promo-desc {
+	font-size: 15px;
+	line-height: 1.55em;
+	color: var(--light-black);
+	margin-bottom: 22px;
+}
+
+.product-promo-btn.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	width: 100%;
+	background-color: var(--primary);
+	color: var(--white);
+	border-radius: 12px;
+	padding: 14px 20px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.4em;
+	box-shadow: 0 8px 20px rgba(71, 112, 255, 0.3);
+}
+
+.product-promo-btn.btn:hover {
+	background-color: #2563EB;
+	color: var(--white);
+}
+
+.product-promo-btn.btn .icon {
+	transition: transform 0.2s ease-out;
+}
+
+.product-promo-btn.btn:hover .icon {
+	transform: translate(2px, -2px);
+}
+
+.product-promo-dismiss {
+	margin-top: 14px;
+	align-self: center;
+	background: transparent;
+	border: 0;
+	font-family: var(--font-family);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--light-black);
+	cursor: pointer;
+	padding: 6px 10px;
+	border-radius: 8px;
+}
+
+.product-promo-dismiss:hover {
+	color: var(--black);
+	background-color: var(--background);
+}
+
+body.promo-open {
+	overflow: hidden;
+}
+
+@keyframes promoFadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes promoScaleIn {
+	from { opacity: 0; transform: translateY(12px) scale(0.96); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Dark theme overrides */
+.dark-theme .product-promo-overlay {
+	background-color: rgba(0, 0, 0, 0.65);
+}
+
+.dark-theme .product-promo-card {
+	background-color: var(--dark-theme-bg);
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.dark-theme .product-promo-close {
+	border-color: rgba(240, 242, 245, 0.15);
+	color: var(--dark-theme-white);
+}
+
+.dark-theme .product-promo-close:hover {
+	background-color: var(--dark-theme-black);
+}
+
+.dark-theme .product-promo-lang {
+	background-color: var(--dark-theme-black);
+}
+
+.dark-theme .product-promo-lang .lang-option {
+	color: var(--dark-theme-light-white);
+}
+
+.dark-theme .product-promo-lang .lang-option.active {
+	color: var(--white);
+}
+
+.dark-theme .product-promo-title {
+	color: var(--dark-theme-white);
+}
+
+.dark-theme .product-promo-desc {
+	color: var(--dark-theme-light-white);
+}
+
+.dark-theme .product-promo-dismiss {
+	color: var(--dark-theme-light-white);
+}
+
+.dark-theme .product-promo-dismiss:hover {
+	color: var(--dark-theme-white);
+	background-color: var(--dark-theme-black);
+}
+
+@media (max-width: 480px) {
+	.product-promo-card {
+		padding: 28px 20px 22px;
+		border-radius: 16px;
+	}
+
+	.product-promo-title {
+		font-size: 20px;
+	}
+
+	.product-promo-desc {
+		font-size: 14px;
+	}
+}
