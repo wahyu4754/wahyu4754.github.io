@@ -2844,3 +2844,105 @@ body.promo-open {
 		font-size: 14px;
 	}
 }
+
+/* Floating reopen button */
+.product-promo-fab {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 1070;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 18px 12px 14px;
+	border: 0;
+	border-radius: 999px;
+	background-color: var(--primary);
+	color: var(--white);
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1em;
+	cursor: pointer;
+	box-shadow: 0 10px 24px rgba(71, 112, 255, 0.35);
+	transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out;
+	animation: promoFabIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.product-promo-fab[hidden] {
+	display: none;
+}
+
+.product-promo-fab:hover {
+	background-color: #2563EB;
+	transform: translateY(-2px);
+	box-shadow: 0 14px 30px rgba(71, 112, 255, 0.45);
+}
+
+.product-promo-fab:focus-visible {
+	outline: 2px solid var(--white);
+	outline-offset: 3px;
+}
+
+.product-promo-fab .fab-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.18);
+}
+
+.product-promo-fab .fab-label {
+	padding-right: 4px;
+	white-space: nowrap;
+}
+
+.product-promo-fab::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 999px;
+	box-shadow: 0 0 0 0 rgba(71, 112, 255, 0.55);
+	animation: promoFabPulse 2.4s ease-out infinite;
+	pointer-events: none;
+}
+
+@keyframes promoFabIn {
+	from { opacity: 0; transform: translateY(16px) scale(0.9); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes promoFabPulse {
+	0% { box-shadow: 0 0 0 0 rgba(71, 112, 255, 0.5); }
+	70% { box-shadow: 0 0 0 18px rgba(71, 112, 255, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(71, 112, 255, 0); }
+}
+
+.dark-theme .product-promo-fab {
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(71, 112, 255, 0.35);
+}
+
+@media (max-width: 480px) {
+	.product-promo-fab {
+		right: 16px;
+		bottom: 16px;
+		padding: 10px 14px 10px 10px;
+		font-size: 13px;
+	}
+
+	.product-promo-fab .fab-icon {
+		width: 26px;
+		height: 26px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.product-promo-fab,
+	.product-promo-fab::after,
+	.product-promo-popup.is-open,
+	.product-promo-card {
+		animation: none !important;
+	}
+}
