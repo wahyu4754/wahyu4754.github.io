@@ -151,7 +151,6 @@
 		function closePopup() {
 			$popup.removeClass('is-open').attr('aria-hidden', 'true');
 			$('body').removeClass('promo-open');
-			sessionStorage.setItem('promoDismissed', '1');
 		}
 
 		$popup.on('click', '[data-popup-close]', closePopup);
@@ -162,9 +161,7 @@
 			}
 		});
 
-		if (sessionStorage.getItem('promoDismissed') !== '1') {
-			setTimeout(openPopup, 900);
-		}
+		setTimeout(openPopup, 900);
 	});
 
 })(jQuery);
